@@ -1,10 +1,4 @@
-import mongoose, {
-  CallbackError,
-  HydratedDocument,
-  Schema,
-  model,
-  models,
-} from "mongoose";
+import mongoose, { Schema, model, models } from "mongoose";
 import bcrypt from "bcryptjs";
 
 export interface IUser {
@@ -23,11 +17,11 @@ const userSchema = new Schema<IUser>(
   { timestamps: true }
 );
 
-userSchema.pre("save", async function (next: any) {
+userSchema.pre("save", async function () {
   if (this.isModified("password")) {
     this.password = await bcrypt.hash(this.password, 10);
   }
-  next();
+  // next();
 });
 
 const User = models?.User || model<IUser>("User", userSchema);

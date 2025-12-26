@@ -1,5 +1,5 @@
 import { upload } from "@imagekit/next";
-import React, { useState, useRef } from "react";
+import React, { useState } from "react";
 interface FileUploadType {
   onSuccess: (res: any) => void;
   onProgress?: (progress: number) => void;
